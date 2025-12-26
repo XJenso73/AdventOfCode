@@ -1,0 +1,61 @@
+[project]
+name = "AdventOfCode"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "isort>=5.13.0",
+    "mypy>=1.16.0",
+    "numpy>=2.4.0",
+    "ruff>=0.12.0",
+    "scipy>=1.16.3",
+]
+
+
+[tool.ruff]
+line-length = 140
+exclude = ["datas", ".venv", "**/tests.py", "**/test_*.py", "**/__tests__"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "C4", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 140
+target-version = ["py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | datas
+  | buck-out
+  |/tests\.py$
+  |/test_.*\.py$
+  |/__tests__/
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 140
+skip = [ "datas",".venv", "**/tests.py", "**/test_*.py", "**/__tests__"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unused_configs = true
+show_error_codes = true
+exclude = [
+    "datas",
+    ".venv"
+]
+

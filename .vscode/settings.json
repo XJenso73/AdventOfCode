@@ -1,0 +1,21 @@
+{
+  // Standardverhalten beim Speichern
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+
+  // Python: Ruff als Linter & Formatter
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+
+  // Git: Pre-commit Hooks erzwingen
+  "git.enableSmartCommit": false,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.allowNoVerifyCommit": false,
+  "python-envs.pythonProjects": []
+}
