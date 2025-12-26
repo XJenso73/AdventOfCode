@@ -19,7 +19,6 @@ FILE_PATH_DATA_DEBUG=/datas/day${DAY}_debug.txt
 FILE_PATH=${YEAR}/day${DAY}.py
 touch $YEAR$FILE_PATH_DATA
 touch $YEAR$FILE_PATH_DATA_DEBUG
-touch ${YEAR}/src/util_day${DAY}.py
 
 
 
