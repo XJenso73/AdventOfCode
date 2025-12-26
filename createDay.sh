@@ -29,12 +29,11 @@ cat <<EOF > "$FILE_PATH"
 import sys
 from src.utils import calculate_duration, import_data
 
-START_TIME = time.perf_counter()
 FILE = ".$FILE_PATH_DATA_DEBUG"
 # FILE = ".$FILE_PATH_DATA"
 
 if __name__ == "__main__":
-    data = import_data(FILE)
+    lines = import_data(FILE)
     calculate_duration()
 EOF
 
