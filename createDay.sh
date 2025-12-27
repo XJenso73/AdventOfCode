@@ -31,8 +31,19 @@ from src.utils import calculate_duration, import_data
 FILE = ".$FILE_PATH_DATA_DEBUG"
 # FILE = ".$FILE_PATH_DATA"
 
+def solve_mystery_one(lines: list[str]) -> None:
+    result = "xy"
+    print(f"Result mystery 1: {result}")
+
+
+def solve_mystery_two(lines: list[str]) -> None:
+    result = "xy"
+    print(f"Result mystery 2: {result}")
+
 if __name__ == "__main__":
     lines = import_data(FILE)
+    solve_mystery_one(lines)
+    solve_mystery_two(lines)
     calculate_duration()
 EOF
 
