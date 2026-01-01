@@ -1,10 +1,24 @@
 # Advent of Code 2023 - Day 19
+import math
+import re
 from dataclasses import dataclass
+from enum import Enum
 
 from src.utils import calculate_duration, import_data
 
+type Ranges = dict[str, tuple[int, int]]
 type WorkflowRules = dict[str, list[Rule]]
 type Workflows = list[Part]
+
+FILE = "./datas/day19_debug.txt"
+FILE = "./datas/day19.txt"
+RULE_PATTERN = re.compile(r"([xmas])([<>])(\d+):(\w+)")
+
+
+class Status(str, Enum):
+    ACCEPTED = "A"
+    REJECTED = "R"
+    START = "in"
 
 
 @dataclass
@@ -26,7 +40,7 @@ class Rule:
     target: str
 
     # Teil 1
-    def matches(self, part: any) -> bool:
+    def matches(self, part: Part) -> bool:
         if self.attr is None:
             return True
         val = getattr(part, self.attr)
@@ -57,10 +71,6 @@ class Rule:
         return (match_range if m_l <= m_h else None, else_range if e_l <= e_h else None)
 
 
-FILE = "./datas/day19_debug.txt"
-FILE = "./datas/day19.txt"
-
-
 def _parse(lines: list[str]) -> tuple[WorkflowRules, Workflows]:
     split_index = lines.index("")
     workflow_lines = lines[:split_index]
@@ -74,49 +84,40 @@ def _parse(lines: list[str]) -> tuple[WorkflowRules, Workflows]:
         for rule in rules:
             parsed_rules.append(_parse_rule(rule))
         workflow_rules[name] = parsed_rules
-
-    workflow = [
-        Part(**{key: int(value) for key, value in (part.split("=") for part in line.strip("{}").split(","))}) for line in part_lines
-    ]
+    workflow = [_parse_part(line) for line in part_lines]
     return (workflow_rules, workflow)
 
 
-def _parse_rule(rule: str):
-    if ":" not in rule:
-        # Fallback (z.B. "A", "R" oder ein Workflow-Name wie "rfg")
-        return Rule(attr=None, op=None, value=None, target=rule)
+def _parse_part(line: str) -> Part:
+    attrs = dict(part.split("=") for part in line.strip("{}").split(","))
+    return Part(x=int(attrs["x"]), m=int(attrs["m"]), a=int(attrs["a"]), s=int(attrs["s"]))
 
-    # Beispiel: 'a<2006:qkq'
-    condition_part, target = rule.split(":")
-    attr = condition_part[0]  # 'a'
-    op = condition_part[1]  # '<'
-    value = int(condition_part[2:])  # 2006
 
-    return Rule(attr=attr, op=op, value=value, target=target)
+def _parse_rule(rule: str) -> Rule:
+    if match := RULE_PATTERN.match(rule):
+        attr, op, value, target = match.groups()
+        return Rule(attr, op, int(value), target)
+    return Rule(None, None, None, rule)
 
 
 def _is_accepted(workflow_rules: WorkflowRules, part: Part) -> bool:
-    current_name = "in"
-    while current_name not in ("A", "R"):
-        rules = workflow_rules[current_name]
+    current = Status.START
+    while current not in (Status.ACCEPTED, Status.REJECTED):
+        rules = workflow_rules[current]
         for rule in rules:
             if rule.matches(part):
-                current_name = rule.target
+                current = rule.target
                 break
 
-    return current_name == "A"
+    return current == Status.ACCEPTED
 
 
-def _count_accepted(name: str, ranges: dict[str, tuple[int, int]], rules: WorkflowRules) -> int:
+def _count_accepted(name: str, ranges: Ranges, rules: WorkflowRules) -> int:
     # Basis-Fälle
-    if name == "R":
+    if name == Status.REJECTED:
         return 0
-    if name == "A":
-        # Produkt der Breiten aller 4 Intervalle
-        product = 1
-        for low, high in ranges.values():
-            product *= high - low + 1
-        return product
+    if name == Status.ACCEPTED:
+        return math.prod(high - low + 1 for low, high in ranges.values())
 
     total = 0
     current_ranges = ranges
