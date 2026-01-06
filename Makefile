@@ -23,7 +23,6 @@ help:
 	@echo ""
 	@echo "Usage:"
 	@echo "  make setup          - Erstellt die Ordner und das Python-Template (Default: Heute)"
-	@echo "  make run            - Führt das Script für den gewählten Tag aus"
 	@echo ""
 	@echo "Parameters:"
 	@echo "  DAY=x               - Tag angeben (z.B. make setup DAY=5)"
@@ -66,6 +65,3 @@ if __name__ == \"__main__\":\n\
 		echo "⚠️  File $(FILE_PATH) already exists."; \
 	fi
 
-# --- RUN ---
-run:
-	@python3 $(FILE_PATH)
