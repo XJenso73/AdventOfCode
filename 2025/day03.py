@@ -1,7 +1,13 @@
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
-# FILE = "./datas/day03_debug.txt"
-FILE = "./datas/day03.txt"
+FILE = "./datas/day03_debug.txt"
+# FILE = "./datas/day03.txt"
 
 
 def _highest_digit(s: str) -> int:

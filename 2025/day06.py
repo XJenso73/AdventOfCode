@@ -1,10 +1,15 @@
 import operator
+import sys
 from functools import reduce
+from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
-# FILE = "./datas/day06_debug.txt"
-FILE = "./datas/day06.txt"
+FILE = "./datas/day06_debug.txt"
+# FILE = "./datas/day06.txt"
 OPS = {"+": operator.add, "*": operator.mul}
 
 

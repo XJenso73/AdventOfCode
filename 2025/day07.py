@@ -1,10 +1,15 @@
+import sys
 from collections import deque
 from functools import cache
+from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
-# FILE = "./datas/day07_debug.txt"
-FILE = "./datas/day07.txt"
+FILE = "./datas/day07_debug.txt"
+# FILE = "./datas/day07.txt"
 
 
 def solve_mystery_one(lines: list[str]) -> int:

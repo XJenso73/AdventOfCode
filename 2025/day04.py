@@ -1,7 +1,13 @@
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
-# FILE = "./datas/day04_debug.txt"
-FILE = "./datas/day04.txt"
+FILE = "./datas/day04_debug.txt"
+# FILE = "./datas/day04.txt"
 # 8 Richtungen: oben, unten, links, rechts + Diagonale
 DIRECTIONS = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
