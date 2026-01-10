@@ -1,10 +1,16 @@
 # Advent of Code 2023 - Day 02
 
 
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day02_debug.txt"
-FILE = "./datas/day02.txt"
+# FILE = "./datas/day02.txt"
 MAX_COUNTS = {"red": 12, "green": 13, "blue": 14}
 
 

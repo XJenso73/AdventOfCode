@@ -1,10 +1,16 @@
 # Advent of Code 2023 - Day 16
+import sys
 from collections import deque
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day16_debug.txt"
-FILE = "./datas/day16.txt"
+# FILE = "./datas/day16.txt"
 
 DIRECTIONS = {
     ".": lambda dx, dy: [(dx, dy)],

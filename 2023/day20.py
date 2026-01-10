@@ -2,9 +2,15 @@
 import copy
 import math
 import re
+import sys
 from collections import Counter, deque
 from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 
 from src.utils import calculate_duration, import_data
 

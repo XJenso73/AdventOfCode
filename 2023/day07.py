@@ -1,6 +1,11 @@
 # Advent of Code 2023 - Day 07
+import sys
 from collections import Counter
+from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
 type HandSortKey = tuple[int, list[int]]
@@ -8,7 +13,7 @@ type HandEntry = tuple[HandSortKey, int]
 
 
 FILE = "./datas/day07_debug.txt"
-FILE = "./datas/day07.txt"
+# FILE = "./datas/day07.txt"
 CARD_VALUES_1 = {"T": 10, "J": 11, "Q": 12, "K": 13, "A": 14}
 # Für Teil 2: J ist ein Joker (schwächer als 2)
 CARD_VALUES_2 = {"T": 10, "J": 1, "Q": 12, "K": 13, "A": 14}

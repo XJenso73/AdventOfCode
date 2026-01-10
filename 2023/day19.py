@@ -1,8 +1,14 @@
 # Advent of Code 2023 - Day 19
 import math
 import re
+import sys
 from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 
 from src.utils import calculate_duration, import_data
 
@@ -11,7 +17,7 @@ type WorkflowRules = dict[str, list[Rule]]
 type Workflows = list[Part]
 
 FILE = "./datas/day19_debug.txt"
-FILE = "./datas/day19.txt"
+# FILE = "./datas/day19.txt"
 RULE_PATTERN = re.compile(r"([xmas])([<>])(\d+):(\w+)")
 
 

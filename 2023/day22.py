@@ -1,13 +1,19 @@
 # Advent of Code 2023 - Day 22
 import re
+import sys
 from collections import deque
 from dataclasses import dataclass
 from functools import cached_property
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day22_debug.txt"
-FILE = "./datas/day22.txt"
+# FILE = "./datas/day22.txt"
 PATTERN = re.compile(r"(\d+),(\d+),(\d+)~(\d+),(\d+),(\d+)")
 
 type SupportGraph = dict[int, set[int]]

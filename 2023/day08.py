@@ -1,12 +1,18 @@
 # Advent of Code 2023 - Day 08
 import math
+import sys
 from collections.abc import Callable
 from itertools import cycle
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day08_debug.txt"
-FILE = "./datas/day08.txt"
+# FILE = "./datas/day08.txt"
 INSTRUCTIONS_MAP = {"L": 0, "R": 1}
 type StepWay = dict[str, tuple[str, str]]
 type ConditionFunc = Callable[[str], bool]
