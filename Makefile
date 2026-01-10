@@ -42,6 +42,10 @@ setup:
 	@if [ ! -f $(FILE_PATH) ]; then \
 		printf "# Advent of Code $(YEAR) - Day $(PADDED_DAY)\n\
 import sys\n\
+from pathlib import Path\n\
+root_dir = Path(__file__).resolve().parent.parent\n\
+if str(root_dir) not in sys.path:\n\
+    sys.path.insert(0, str(root_dir))\n\
 from src.utils import calculate_duration, import_data\n\
 \n\
 FILE = \"./datas/day$(PADDED_DAY)_debug.txt\"\n\

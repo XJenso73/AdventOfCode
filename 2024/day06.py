@@ -1,11 +1,16 @@
 # Advent of Code 2024 - Day 06
+import sys
 from dataclasses import dataclass, field
 from functools import cached_property
+from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day06_debug.txt"
-FILE = "./datas/day06.txt"
+# FILE = "./datas/day06.txt"
 # Directions: Up, Right, Down, Left (90 degrees clockwise)
 DIRECTIONS = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 STARTPOINT = "^"

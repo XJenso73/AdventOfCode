@@ -1,12 +1,17 @@
 # Advent of Code 2024 - Day 08
+import sys
 from collections import defaultdict
 from dataclasses import dataclass
 from itertools import combinations
+from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from src.utils import calculate_duration, import_data
 
 FILE = "./datas/day08_debug.txt"
-FILE = "./datas/day08.txt"
+# FILE = "./datas/day08.txt"
 
 type Antinodes = set[tuple[int, int]]
 

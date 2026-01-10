@@ -16,12 +16,13 @@ dependencies = [
 
 [tool.ruff]
 line-length = 140
+ignore = ["E402"]
 exclude = ["datas", ".venv", "**/tests.py", "**/test_*.py", "**/__tests__"]
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "C4", "UP", "SIM"]
-ignore = ["E501"]
+ignore = ["E501", "E402"]
 
 [tool.black]
 line-length = 140
