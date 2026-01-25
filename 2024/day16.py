@@ -92,7 +92,6 @@ def _find_shortest_path(work_flow: Workflow) -> tuple[int, int]:
     costs = np.full((hight, width, 4), INF, dtype=np.int32)
 
     # Start: facing East (direction 1)
-    # start_state = (start_pos[0], start_pos[1], 1)
     costs[start_pos[1], start_pos[0], 1] = 0
 
     # Priority queue: (cost, x, y, direction)
