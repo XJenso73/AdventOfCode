@@ -48,8 +48,8 @@ if str(root_dir) not in sys.path:\n\
     sys.path.insert(0, str(root_dir))\n\
 from src.utils import calculate_duration, import_data\n\
 \n\
-FILE = \"./datas/day$(PADDED_DAY)_debug.txt\"\n\
-# FILE = \"./datas/day$(PADDED_DAY).txt\"\n\
+FILE = Path(\"datas/day$(PADDED_DAY)_debug.txt\")\n\
+FILE = Path(\"datas/day$(PADDED_DAY).txt\")\n\
 \n\
 def solve_part_one(lines: list[str]) -> None:\n\
     result = \"xy\"\n\
